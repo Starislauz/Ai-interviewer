@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build
+/app/release
+
+# Never commit a keystore or a key
+*.jks
+*.keystore
+secrets.properties
+/tools/deepseek_key.txt
+
+# Personal data: never upload these to GitHub
+tools/cv.txt
+tools/job.txt

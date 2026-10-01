@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview Coach - UI preview (mockup)</title>
+<style>
+  :root {
+    --primary: #10233F;
+    --on-primary: #FFFFFF;
+    --primary-container: #D7E3FF;
+    --on-primary-container: #001B3D;
+    --surface: #FFFBFE;
+    --on-surface: #1B1B1F;
+    --surface-variant: #E1E2EC;
+    --on-surface-variant: #44474F;
+    --outline: #74777F;
+    --error-container: #F9DEDC;
+    --on-error-container: #410E0B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 28px 16px 48px;
+    background: #EDEDF2;
+    font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+    color: var(--on-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .notice {
+    max-width: 400px;
+    background: #FFF4CE;
+    border: 1px solid #E0C97F;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .notice strong { display: block; margin-bottom: 4px; }
+  .phone {
+    width: 390px;
+    max-width: 100%;
+    height: 780px;
+    background: var(--surface);
+    border-radius: 28px;
+    border: 8px solid #22252B;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.24);
+  }
+  .header {
+    background: var(--primary);
+    color: var(--on-primary);
+    padding: 13px 16px;
+  }
+  .header .title { font-size: 19px; font-weight: 600; }
+  .header .sub { font-size: 11.5px; opacity: 0.85; margin-top: 2px; }
+  .tabs { display: flex; background: var(--surface); border-bottom: 1px solid var(--surface-variant); }
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 4px 10px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    user-select: none;
+  }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+  .body { flex: 1; overflow-y: auto; padding: 16px; }
+  .body::-webkit-scrollbar { width: 7px; }
+  .body::-webkit-scrollbar-thumb { background: #C6C8D0; border-radius: 4px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--surface-variant);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 14.5px; font-weight: 600; }
+  .muted { font-size: 12.5px; color: var(--on-surface-variant); line-height: 1.5; }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 20px;
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .btn.tonal { background: var(--primary-container); color: var(--on-primary-container); }
+  .btn.text { background: none; color: var(--primary); font-weight: 500; padding: 9px; }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .row { display: flex; gap: 12px; }
+  .row .btn { margin-bottom: 0; }
+
+  .field { margin-bottom: 12px; }
+  .field label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+  }
+  .field .box {
+    border: 1px solid var(--outline);
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-size: 13.5px;
+    background: var(--surface);
+    min-height: 44px;
+    line-height: 1.5;
+  }
+  .field .box.tall { min-height: 76px; }
+  .field .box .ph { color: #8A8D96; }
+
+  .divider { height: 1px; background: var(--surface-variant); margin: 16px 0; }
+  .status { font-size: 12.5px; font-weight: 600; color: var(--on-surface-variant); margin-bottom: 12px; }
+  .spinner {
+    display: inline-block;
+    width: 13px; height: 13px;
+    border: 2px solid var(--surface-variant);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: -2px;
+    margin-right: 7px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .row-actions { display: flex; gap: 12px; margin-bottom: 12px; }
+  .row-actions .btn { margin: 0; }
+  .answer { font-size: 15px; line-height: 1.6; }
+  .error {
+    background: var(--error-container);
+    color: var(--on-error-container);
+    font-size: 12.5px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .error .btn.text { color: var(--on-error-container); width: auto; padding: 4px 8px; margin: 0; }
+  .hidden { display: none; }
+  .footnote { max-width: 400px; font-size: 12px; color: #55596A; margin-top: 22px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="notice">
+  <strong>This is a drawing, not the app.</strong>
+  A static mockup of the Compose screens, so you can judge the layout before an APK
+  exists. Nothing here talks to DeepSeek, and the microphone does nothing. The real
+  thing only runs on Android.
+</div>
+
+<div class="phone">
+  <div class="header">
+    <div class="title">Interview Coach</div>
+    <div class="sub">Rehearse answers built from your own CV</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="cv">My CV</div>
+    <div class="tab" data-tab="practice">Practice</div>
+    <div class="tab" data-tab="history">History</div>
+    <div class="tab" data-tab="settings">Settings</div>
+  </div>
+
+  <div class="body">
+
+    <!-- ---------------------------------------------------------- MY CV -->
+    <section id="tab-cv">
+      <div class="card">
+        <h3>No CV saved</h3>
+        <div class="muted">Upload a PDF and the model reads it directly, or paste the text below.</div>
+      </div>
+
+      <button class="btn">Upload CV (PDF or text)</button>
+
+      <div class="field">
+        <label>OR PASTE YOUR CV TEXT</label>
+        <div class="box tall"><span class="ph">Paste it here...</span></div>
+      </div>
+
+      <button class="btn" disabled>Save pasted CV</button>
+
+      <div class="divider"></div>
+
+      <div class="field">
+        <label>TARGET ROLE OR JOB ADVERT (OPTIONAL)</label>
+        <div class="box tall"><span class="ph">Paste the job advert here...</span></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------- PRACTICE -->
+    <section id="tab-practice" class="hidden">
+      <div class="status">Press Listen, speak the question, then press Answer.</div>
+
+      <button class="btn">1. Listen for a question</button>
+
+      <div class="row" style="margin-bottom:12px">
+        <div class="status" style="margin:0"><span class="spinner"></span>Typing what it hears...</div>
+      </div>
+
+      <div class="field">
+        <label>2. QUESTION</label>
+        <div class="box tall">
+          Tell me about a time you had to deal with a difficult stakeholder
+        </div>
+      </div>
+
+      <div class="row-actions">
+        <button class="btn">3. Answer</button>
+        <button class="btn tonal">Clear</button>
+      </div>
+
+      <div class="status">Answered</div>
+      <div class="muted" style="margin-bottom:12px">
+        Tell me about a time you had to deal with a difficult stakeholder
+      </div>
+
+      <div class="card">
+        <h3>Answer</h3>
+        <div class="answer" style="margin-top:8px">
+          Last year a product owner kept changing requirements two days before each
+          release, and the team was reworking instead of shipping. I asked for fifteen
+          minutes with her at the start of each sprint, and we agreed a freeze point
+          after which only defects would be taken. I also published a one-page list of
+          what was in flight so the change cost was visible to everyone. The next
+          release went out on the agreed date, and the rework dropped from around a
+          third of our capacity to under a tenth.
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------- HISTORY -->
+    <section id="tab-history" class="hidden">
+      <div class="card">
+        <div style="font-size:11px;color:var(--on-surface-variant);margin-bottom:6px">
+          1 Oct 2026, 14:22
+        </div>
+        <h3>Tell me about a time you had to deal with a difficult stakeholder</h3>
+        <div class="muted" style="margin-top:6px">
+          Last year a product owner kept changing requirements two days before each
+          release, and the team was reworking instead of shipping...
+        </div>
+        <button class="btn text" style="width:auto;margin-top:6px">Load this answer</button>
+      </div>
+      <button class="btn text">Clear history</button>
+    </section>
+
+    <!-- ------------------------------------------------------- SETTINGS -->
+    <section id="tab-settings" class="hidden">
+      <div class="field">
+        <label>DEEPSEEK API KEY</label>
+        <div class="box">sk-...............................</div>
+      </div>
+      <div class="field">
+        <label>MODEL</label>
+        <div class="box">deepseek-flash</div>
+      </div>
+
+      <div class="muted" style="margin-bottom:12px">
+        Thinking mode is switched off, so the answer starts arriving sooner.
+      </div>
+
+      <div class="divider"></div>
+      <h3 style="font-size:14px;margin:0 0 6px">Cost</h3>
+      <div class="muted" style="margin-bottom:12px">
+        Flash costs about $0.15 per million input tokens and $0.60 per million output
+        tokens off-peak. A practice session costs a fraction of a cent.
+      </div>
+
+      <div class="divider"></div>
+      <h3 style="font-size:14px;margin:0 0 6px">Where your data goes</h3>
+      <div class="muted">
+        Your CV and each question are sent to DeepSeek to produce an answer. The CV and
+        the API key are stored only on this phone, inside the app's private storage.
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="footnote">
+  Click the tabs above to move between the four screens. This file is
+  <code>ui_preview.html</code> and can be deleted once the real APK exists.
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.body section').forEach(function (s) {
+        s.classList.add('hidden');
+      });
+      document.getElementById('tab-' + tab.dataset.tab).classList.remove('hidden');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Plain platform theme: the UI itself is Jetpack Compose, so no AppCompat
+         or Material Components dependency is required. -->
+    <style name="Theme.AiInterviewer" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#10233F</item>
+        <item name="android:windowBackground">#FFFBFE</item>
+    </style>
+</resources>
